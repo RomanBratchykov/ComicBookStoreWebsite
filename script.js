@@ -75,3 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+function subscribeNewsletter() {
+    window.alert("Thank you for subscribing to our newsletter!");
+}
