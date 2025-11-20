@@ -1,0 +1,51 @@
+/* fonts/style.css */
+
+/* Підключення шрифтів - замініть шляхи на ваші реальні */
+@font-face {
+    font-family: 'DeathRattle';
+    src: url('fonts/DeathRattleBB.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'CCMeanwhile';
+    src: url('fonts/CCMeanwhile.ttf') format('truetype');
+}
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #000 #fff;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+    border-left: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #F5F525;
+    border: 2px solid #000;
+}
+
+.dragging {
+    opacity: 0.5;
+    border-style: dashed !important;
+    transform: scale(0.9);
+}
+
+@keyframes pulse-slow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+.animate-pulse-slow {
+    animation: pulse-slow 3s infinite;
+}
+
+.drag-over {
+    background-color: #F5F525 !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(245, 245, 37, 0.8);
+}

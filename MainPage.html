@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Store - Marvel Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-white text-black overflow-x-hidden">
+
+    <header class="fixed top-0 w-full z-50 bg-white border-b-4 border-black font-bold">
+        <div class="h-2 w-full bg-[#F5F525] border-b-2 border-black"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="text-4xl tracking-tighter uppercase font-['DeathRattle'] hover:text-[#FF0000] transition-colors cursor-pointer logo-anim">
+            <img src="images/logoPNG.png" alt="Comic Book Store Logo" width = "100" class="inline-block w-12 mr-2 -mt-2">
+            </div>
+
+            <nav class="hidden md:flex space-x-8 font-['CCMeanwhile'] text-xl">
+                <a href="#" class="hover:text-[#F5F525] hover:bg-black px-2 transition-all transform hover:-rotate-2">MANGA</a>
+                <a href="#" class="hover:text-[#F5F525] hover:bg-black px-2 transition-all transform hover:rotate-2">COMICS</a>
+                <a href="#" class="hover:text-[#F5F525] hover:bg-black px-2 transition-all transform hover:-rotate-2">CLOTHES</a>
+            </nav>
+
+            <div id="cart-zone" class="border-4 border-black p-2 flex items-center gap-2 bg-gray-100 transition-all duration-300" title="Перетягни сюди комікс!">
+                <i data-lucide="shopping-cart"></i>
+                <span id="cart-count" class="font-mono text-xl font-bold">0</span>
+                <span class="text-xs hidden md:inline text-gray-500">Drag items here!</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative h-[600px] w-full overflow-hidden border-b-4 border-black mt-20 flex items-center justify-center">
+        <img id="parallax-bg" 
+             src="https://api.builder.io/api/v1/image/assets/TEMP/42ba4ad7acd4eb576e8cd3c6851524a3ff467769" 
+             class="absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none"
+             alt="Hero Background">
+        
+        <div class="relative z-10 text-center bg-black/30 p-10 backdrop-blur-sm border-4 border-[#F5F525]">
+            <h1 class="text-6xl md:text-8xl text-[#F5F525] font-['DeathRattle'] drop-shadow-[4px_4px_0_#000] animate-pulse-slow">
+                NEW ARRIVALS
+            </h1>
+            <button class="mt-6 px-8 py-3 bg-white border-4 border-black text-2xl font-['CCMeanwhile'] hover:bg-[#FF0000] hover:text-white hover:shadow-[8px_8px_0_#000] transition-all hover:translate-x-[-4px] hover:translate-y-[-4px]">
+                SHOP NOW
+            </button>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-8">
+        
+        <aside class="w-full lg:w-1/4">
+            <div class="sticky top-28 bg-[#F5F525] border-4 border-black p-6 shadow-[8px_8px_0_#000]">
+                <h2 class="text-3xl font-['DeathRattle'] mb-6 border-b-4 border-black pb-2">FILTERS</h2>
+                
+                <div class="space-y-4 font-['CCMeanwhile'] text-xl">
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="appearance-none w-6 h-6 border-4 border-black checked:bg-black transition-colors">
+                        <span class="group-hover:translate-x-2 transition-transform">Marvel</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="appearance-none w-6 h-6 border-4 border-black checked:bg-black transition-colors">
+                        <span class="group-hover:translate-x-2 transition-transform">DC Comics</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" class="appearance-none w-6 h-6 border-4 border-black checked:bg-black transition-colors">
+                        <span class="group-hover:translate-x-2 transition-transform">Manga</span>
+                    </label>
+                    
+                    <div class="pt-4">
+                        <p class="mb-2">Price Range</p>
+                        <input type="range" class="w-full accent-black h-2 bg-white border-2 border-black rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="w-full lg:w-3/4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8" id="comics-grid">
+                
+                <article class="comic-card relative bg-white border-4 border-black p-4 shadow-[0_0_0_#000] hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab active:cursor-grabbing" 
+                         draggable="true" 
+                         data-id="1" 
+                         data-price="0.99">
+                    <div class="absolute -top-4 -left-4 bg-[#FF0000] text-white border-2 border-black px-2 py-1 font-bold rotate-[-10deg] z-10">NEW</div>
+                    <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4">
+                        <img src="https://api.builder.io/api/v1/image/assets/TEMP/5d5c8e1d14a58a235ae6bbdea1b78a61918fee3a" alt="Avengers" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl font-['DeathRattle'] leading-none mb-2">AVENGERS #34</h3>
+                    <div class="flex justify-between items-end font-['CCMeanwhile']">
+                        <span class="text-sm text-gray-600">Marvel</span>
+                        <span class="text-3xl font-bold">99¢</span>
+                    </div>
+                </article>
+
+                <article class="comic-card relative bg-white border-4 border-black p-4 hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab" draggable="true" data-id="2" data-price="1.99">
+                    <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4">
+                        <img src="https://api.builder.io/api/v1/image/assets/TEMP/5d5c8e1d14a58a235ae6bbdea1b78a61918fee3a" alt="Iron Man" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-2xl font-['DeathRattle'] leading-none mb-2">IRON MAN</h3>
+                    <div class="flex justify-between items-end font-['CCMeanwhile']">
+                        <span class="text-sm text-gray-600">Marvel</span>
+                        <span class="text-3xl font-bold">$1.99</span>
+                    </div>
+                </article>
+                
+                </div>
+        </main>
+    </div>
+    <section class="bg-black text-white py-16 border-y-4 border-[#F5F525]">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-5xl text-[#F5F525] font-['DeathRattle'] text-center mb-12">READERS REVIEWS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white text-black p-6 border-4 border-[#F5F525] transform hover:-translate-y-2 transition-transform">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full border-2 border-black overflow-hidden">
+                            <img src="https://cdn.marvel.com/content/2x/im2024001_cover.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4 font-bold font-['CCMeanwhile']">Alex Stark</div>
+                    </div>
+                    <p class="italic">"Best comic shop ever! Delivery was faster than Quicksilver."</p>
+                    <div class="mt-4 text-[#FF0000]">★★★★★</div>
+                </div>
+                
+                <div class="bg-white text-black p-6 border-4 border-[#F5F525] transform hover:-translate-y-2 transition-transform md:translate-y-4">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full border-2 border-black overflow-hidden">
+                             <img src="https://api.builder.io/api/v1/image/assets/TEMP/0c5cd0676f2eb05b160274125727b3a2bbec6c5b" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4 font-bold font-['CCMeanwhile']">Peter P.</div>
+                    </div>
+                    <p class="italic">"Found rare editions here. Simply amazing quality."</p>
+                    <div class="mt-4 text-[#FF0000]">★★★★★</div>
+                </div>
+
+                 <div class="bg-white text-black p-6 border-4 border-[#F5F525] transform hover:-translate-y-2 transition-transform">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full border-2 border-black overflow-hidden">
+                             <img src="https://api.builder.io/api/v1/image/assets/TEMP/0c5cd0676f2eb05b160274125727b3a2bbec6c5b" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4 font-bold font-['CCMeanwhile']">Bruce W.</div>
+                    </div>
+                    <p class="italic">"Dark theme fits my style. Good packaging."</p>
+                    <div class="mt-4 text-[#FF0000]">★★★★☆</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-12 border-t-4 border-black relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+            
+            <div class="font-['CCMeanwhile'] text-center md:text-left">
+                <h3 class="text-2xl font-bold mb-4">CONTACTS</h3>
+                <p>fifthwall@gmail.com</p>
+                <p>+1 234 567 890</p>
+            </div>
+
+            <div class="w-full md:w-1/3 text-center">
+                <h3 class="text-2xl font-['DeathRattle'] mb-4">WANNA STAY TUNED?</h3>
+                <form class="flex border-4 border-black shadow-[4px_4px_0_#000]">
+                    <input type="email" placeholder="Your email..." class="w-full p-3 outline-none font-['CCMeanwhile']">
+                    <button class="bg-[#F5F525] px-6 py-3 font-bold border-l-4 border-black hover:bg-black hover:text-[#F5F525] transition-colors">SEND</button>
+                </form>
+            </div>
+
+            <div class="flex space-x-4">
+                <div class="w-12 h-12 border-4 border-black flex items-center justify-center hover:bg-[#F5F525] cursor-pointer transition-colors"><i data-lucide="instagram"></i></div>
+                <div class="w-12 h-12 border-4 border-black flex items-center justify-center hover:bg-[#F5F525] cursor-pointer transition-colors"><i data-lucide="twitter"></i></div>
+                <div class="w-12 h-12 border-4 border-black flex items-center justify-center hover:bg-[#F5F525] cursor-pointer transition-colors"><i data-lucide="facebook"></i></div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8 font-['CCMeanwhile'] text-xs opacity-50">
+            © 2024 COMIC STORE. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Ініціалізація іконок
+        lucide.createIcons();
+    </script>
+</body>
+</html>
