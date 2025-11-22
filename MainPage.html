@@ -19,8 +19,8 @@
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
             <div
                 class="text-4xl tracking-tighter uppercase font-['DeathRattle'] hover:text-[#FF0000] transition-colors cursor-pointer logo-anim">
-                <img src="images/logoPNG.png" alt="Comic Book Store Logo" width="100"
-                    class="inline-block w-12 mr-2 -mt-2">
+                <img src="images/logoPNG.png" alt="Comic Book Store Logo" width="100" onclick="openEasterEgg('images/Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster).mp4')" style = "cursor: pointer;"
+                    >
             </div>
 
             <nav class="hidden md:flex space-x-8 font-['CCMeanwhile'] text-xl">
@@ -151,7 +151,7 @@
                     <h3 class="text-2xl font-['DeathRattle'] leading-none mb-2">BATMAN</h3>
                     <div class="flex justify-between items-end font-['CCMeanwhile']">
                         <span class="text-sm text-gray-600">DC</span>
-                        <span class="text-3xl font-bold">$1.99</span>
+                        <span class="text-3xl font-bold">$1.<span style = "color: red;">9</span>9</span>
                     </div>
                 </article>
 
@@ -214,15 +214,15 @@
             <div class="font-['CCMeanwhile'] text-center md:text-left">
                 <h3 class="text-2xl font-bold mb-4">CONTACTS</h3>
                 <p>fifthwall@gmail.com</p>
-                <p>+1 234 567 890</p>
+                <p>+1 <span style = "color: red;">2</span>34 567 890</p>
             </div>
             <div class="w-full md:w-1/3 text-center">
                 <h3 class="text-2xl font-['DeathRattle'] mb-4">WANNA STAY TUNED?</h3>
                 <form class="flex border-4 border-black shadow-[4px_4px_0_#000]">
                     <input type="email" placeholder="Your email..."
-                        class="w-full p-3 outline-none font-['CCMeanwhile']">
+                        class="w-full p-3 outline-none font-['CCMeanwhile']" id = "emailInput">
                     <button
-                        class="bg-[#F5F525] px-6 py-3 font-bold border-l-4 border-black hover:bg-black hover:text-[#F5F525] transition-colors" onclick=subscribeNewsletter()">SEND</button>
+                        class="bg-[#F5F525] px-6 py-3 font-bold border-l-4 border-black hover:bg-black hover:text-[#F5F525] transition-colors" onclick="flySuperman()">SEND</button>
                 </form>
             </div>
 
@@ -243,7 +243,7 @@
         </div>
 
         <div class="text-center mt-8 font-['CCMeanwhile'] text-xs opacity-50">
-            © 2024 COMIC STORE. ALL RIGHTS RESERVED.
+            © 202<span style = "color: red;">1</span> COMIC STORE. ALL RIGHTS RESERVED.
         </div>
     </footer>
 
