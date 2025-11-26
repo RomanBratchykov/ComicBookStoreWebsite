@@ -1,54 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. PARALLAX EFFECT ---
     const parallaxBg = document.getElementById('parallax-bg');
     
     window.addEventListener('scroll', () => {
         let offset = window.pageYOffset;
-        // Зсуваємо фон зі швидкістю 0.5 від швидкості скролу
         parallaxBg.style.transform = `translateY(${offset * 0.5}px)`;
     });
 
-    // --- 2. DRAG AND DROP FUNCTIONALITY ---
     const comics = document.querySelectorAll('.comic-card');
     const cartZone = document.getElementById('cart-zone');
     const cartCount = document.getElementById('cart-count');
     let count = 0;
 
     comics.forEach(comic => {
-        // Початок перетягування
         comic.addEventListener('dragstart', (e) => {
             comic.classList.add('dragging');
-            // Передаємо дані про товар (можна передати ID)
             e.dataTransfer.setData('text/plain', comic.dataset.id);
         });
 
-        // Кінець перетягування
         comic.addEventListener('dragend', () => {
             comic.classList.remove('dragging');
         });
     });
 
-    // Дозволяємо кидати в зону кошика
     cartZone.addEventListener('dragover', (e) => {
-        e.preventDefault(); // Це обов'язково!
+        e.preventDefault(); 
         cartZone.classList.add('drag-over');
     });
 
-    // Коли покидаємо зону кошика (не кинули)
     cartZone.addEventListener('dragleave', () => {
         cartZone.classList.remove('drag-over');
     });
 
-    // Момент кидка (Drop)
     cartZone.addEventListener('drop', (e) => {
         e.preventDefault();
         cartZone.classList.remove('drag-over');
         
-        // Отримуємо ID товару
         const id = e.dataTransfer.getData('text/plain');
         
-        // Логіка додавання (візуальна)
         count++;
         cartCount.innerText = count;
         if (cartCount.innerText == 5) {
@@ -58,14 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
             openField6();
         }
         
-        // Анімація кошика "Бульк"
         cartZone.style.transform = "scale(1.2)";
         setTimeout(() => {
             cartZone.style.transform = "scale(1)";
         }, 200);
 
-        // Можна додати сповіщення
-        // alert(`Comics #${id} added to cart!`);
     });
 
     const buttons = document.querySelectorAll('button');
@@ -75,45 +61,79 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            // Можна використати для складних ефектів блиску
         });
     });
+
+    const slides = document.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+        const intervalTime = 5000; 
+
+        setInterval(() => {
+            slides[currentSlide].classList.remove('opacity-100');
+            slides[currentSlide].classList.add('opacity-0');
+
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            slides[currentSlide].classList.remove('opacity-0');
+            slides[currentSlide].classList.add('opacity-100');
+        }, intervalTime);
+
+        const openBtn = document.getElementById('open-menu-btn');
+        const closeBtn = document.getElementById('close-menu-btn');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const overlay = document.getElementById('menu-overlay');
+
+        function toggleMenu() {
+            if (window.innerWidth >= 768) return;
+            const isClosed = sidebar.classList.contains('translate-x-full');
+            
+            if (isClosed) {
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-0');
+                }, 10);
+            } else {
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300); 
+            }
+        }
+
+        openBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
 });
 
 function subscribeNewsletter() {
     window.alert("Thank you for subscribing to our newsletter!");
 }
 
-function openEasterEgg(videoUrl) {
+function handleLogoClick(videoUrl) {
+    if (window.innerWidth < 768) {
+        toggleMenu(); }
+}
+function openInsta(){
+    window.open("https://www.instagram.com/therealstanlee/","_blank");
+}
+function toggleInfo(event, id) {
+    if(event) event.stopPropagation();
 
-    const modal = document.createElement("div");
-    modal.style.position = "fixed";
-    modal.style.inset = "0";
-    modal.style.background = "rgba(0,0,0,0.85)";
-    modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.alignItems = "center";
-    modal.style.zIndex = "9999";
-
-    const video = document.createElement("video");
-    video.src = videoUrl;       
-    video.controls = true;
-    video.autoplay = true;
-    video.style.maxWidth = "90%";
-    video.style.maxHeight = "90%";
-    video.style.boxShadow = "0 0 20px #000";
-    video.style.borderRadius = "10px";
-
-    modal.appendChild(video);
-    document.body.appendChild(modal);
-
-    modal.onclick = function(e) {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    };
-};
-
+    const infoBlock = document.getElementById(id);
+    
+    // Check if currently hidden
+    if (infoBlock.classList.contains('hidden')) {
+        // Show it
+        infoBlock.classList.remove('hidden');
+        infoBlock.classList.add('flex'); 
+    } else {
+        // Hide it
+        infoBlock.classList.add('hidden');
+        infoBlock.classList.remove('flex');
+    }
+}
 function openField() {
     const fieldWindow = window.open("", "FieldWindow", "width=600,height=400");
 

@@ -13,14 +13,45 @@
 
 <body class="bg-white text-black overflow-x-hidden">
 
+    <div id="menu-overlay"
+        class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+    </div>
+
+    <div id="mobile-sidebar"
+        class="fixed top-0 right-0 h-full w-[280px] bg-white border-l-4 border-black z-[70] transform translate-x-full transition-transform duration-300 ease-in-out shadow-[-10px_0_0_rgba(0,0,0,0.2)]">
+        <div class="p-6 flex flex-col h-full bg-[url('https://www.transparenttextures.com/patterns/comic-dots.png')]">
+
+            <div class="flex justify-end mb-8">
+                <button id="close-menu-btn"
+                    class="p-2 border-4 border-black bg-white hover:bg-[#FF0000] hover:text-white transition-all shadow-[4px_4px_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <nav class="flex flex-col space-y-6 font-['CCMeanwhile'] text-2xl text-center">
+                <a href="NotImplemented.html"
+                    class="block py-3 border-b-4 border-black hover:bg-[#F5F525] hover:text-black transition-colors">MANGA</a>
+                <a href="NotImplemented.html"
+                    class="block py-3 border-b-4 border-black hover:bg-[#F5F525] hover:text-black transition-colors">COMICS</a>
+                <a href="NotImplemented.html"
+                    class="block py-3 border-b-4 border-black hover:bg-[#F5F525] hover:text-black transition-colors">CLOTHES</a>
+            </nav>
+
+            <div class="mt-auto text-center font-['DeathRattle'] text-gray-500">
+                COMIC STORE APP
+            </div>
+        </div>
+    </div>
+
     <header class="fixed top-0 w-full z-50 bg-white border-b-4 border-black font-bold">
         <div class="h-2 w-full bg-[#F5F525] border-b-2 border-black"></div>
 
         <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
             <div
                 class="text-4xl tracking-tighter uppercase font-['DeathRattle'] hover:text-[#FF0000] transition-colors cursor-pointer logo-anim">
-                <img src="images/logoPNG.png" alt="Comic Book Store Logo" width="100" onclick="openEasterEgg('images/Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster).mp4')" style = "cursor: pointer;"
-                    >
+                <img src="images/logoPNG.png" id="open-menu-btn" alt="Comic Book Store Logo" width="100"
+                    style="cursor: pointer;"
+                    onclick="handleLogoClick('images/Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster).mp4')">
             </div>
 
             <nav class="hidden md:flex space-x-8 font-['CCMeanwhile'] text-xl">
@@ -44,36 +75,35 @@
     </header>
 
     <section
-        class="relative h-[600px] w-full overflow-hidden border-b-4 border-black mt-20 flex items-center justify-center">
-        <div class="carousel">
-            <div class="carousel-container">
-                <img id="parallax-bg"
-                    class="absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none"
-                    alt="Hero Background" src="images/Panel1.png" alt="Image 1">
-                <img id="parallax-bg"
-                    class="absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none"
-                    alt="Hero Background" src="images/BatsSupe.png" alt="Image 2">
-                <img id="parallax-bg"
-                    class="absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none"
-                    alt="Hero Background" src="images/Spider-Man-comics.png" alt="Image 3">
-            </div>
-            <img id="parallax-bg"
-                src="https://api.builder.io/api/v1/image/assets/TEMP/42ba4ad7acd4eb576e8cd3c6851524a3ff467769"
-                class="absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none"
-                alt="Hero Background">
+        class="relative h-[600px] w-full overflow-hidden border-b-4 border-black mt-20 flex items-center justify-center bg-black">
 
-            <div class="relative z-10 text-center bg-black/30 p-10 backdrop-blur-sm border-4 border-[#F5F525]">
-                <h1
-                    class="text-6xl md:text-8xl text-[#F5F525] font-['DeathRattle'] drop-shadow-[4px_4px_0_#000] animate-pulse-slow">
-                    NEW ARRIVALS
-                </h1>
-                <button
-                    class="mt-6 px-8 py-3 bg-white border-4 border-black text-2xl font-['CCMeanwhile'] hover:bg-[#FF0000] hover:text-white hover:shadow-[8px_8px_0_#000] transition-all hover:translate-x-[-4px] hover:translate-y-[-4px]">
-                    SHOP NOW
-                </button>
-            </div>
+        <div id="carousel-container" class="absolute inset-0 w-full h-full">
+
+            <img src="images/Panel1.png" alt="Hero Background 1"
+                class="carousel-slide absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none transition-opacity duration-1000 ease-in-out opacity-100">
+
+            <img src="images/BatsSupe.png" alt="Hero Background 2"
+                class="carousel-slide absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none transition-opacity duration-1000 ease-in-out opacity-0">
+
+            <img src="images/Spider-Man-comics.png" alt="Hero Background 3"
+                class="carousel-slide absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none transition-opacity duration-1000 ease-in-out opacity-0">
+
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/42ba4ad7acd4eb576e8cd3c6851524a3ff467769"
+                alt="Hero Background 4"
+                class="carousel-slide absolute top-0 left-0 w-full h-[120%] object-cover object-top pointer-events-none transition-opacity duration-1000 ease-in-out opacity-0">
+        </div>
+
+        <div class="relative z-20 text-center bg-black/30 p-10 backdrop-blur-sm border-4 border-[#F5F525]">
+            <h1
+                class="text-6xl md:text-8xl text-[#F5F525] font-['DeathRattle'] drop-shadow-[4px_4px_0_#000] animate-pulse-slow">
+                NEW ARRIVALS
+            </h1>
+            <button
+                class="mt-6 px-8 py-3 bg-white border-4 border-black text-2xl font-['CCMeanwhile'] hover:bg-[#FF0000] hover:text-white hover:shadow-[8px_8px_0_#000] transition-all hover:translate-x-[-4px] hover:translate-y-[-4px]">
+                SHOP NOW
+            </button>
+        </div>
     </section>
-
     <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-8">
 
         <aside class="w-full lg:w-1/4">
@@ -107,53 +137,101 @@
         </aside>
 
         <main class="w-full lg:w-3/4">
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8" id="comics-grid">
-
                 <article
-                    class="comic-card relative bg-white border-4 border-black p-4 shadow-[0_0_0_#000] hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab active:cursor-grabbing"
+                    class="comic-card group relative bg-white border-4 border-black p-4 shadow-[0_0_0_#000] hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab active:cursor-grabbing"
                     draggable="true" data-id="1" data-price="0.99">
                     <div
                         class="absolute -top-4 -left-4 bg-[#FF0000] text-white border-2 border-black px-2 py-1 font-bold rotate-[-10deg] z-10">
                         NEW</div>
-                    <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4">
+                    <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4 relative">
                         <img src="https://api.builder.io/api/v1/image/assets/TEMP/5d5c8e1d14a58a235ae6bbdea1b78a61918fee3a"
                             alt="Avengers"
                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+
+                             <div id="info-avengers"
+                            class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex-col items-center justify-center p-4 text-center transition-all">
+                            <h4 class="font-['DeathRattle'] text-xl mb-2">DETAILS</h4>
+                            <p class="font-['CCMeanwhile'] text-sm mb-4">Meet the great Avengers on their adventures.</p>
+                            <button onclick="toggleInfo(event, 'info-avengers')"
+                                class="border-2 border-black px-4 py-1 hover:bg-[#FF0000] hover:text-white font-bold transition-colors">
+                                CLOSE
+                            </button>
+                        </div>
                     </div>
                     <h3 class="text-2xl font-['DeathRattle'] leading-none mb-2">AVENGERS #34</h3>
-                    <div class="flex justify-between items-end font-['CCMeanwhile']">
+                    <div class="flex justify-between items-end font-['CCMeanwhile'] relative">
                         <span class="text-sm text-gray-600">Marvel</span>
                         <span class="text-3xl font-bold">99¢</span>
+                        <button onclick="toggleInfo(event, 'info-avengers')"
+                            class="absolute bottom-1 center-0 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-[#F5F525] border-2 border-black px-3 py-1 text-sm font-bold shadow-[2px_2px_0_#000] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] z-10">
+                            INFO
+                        </button>
                     </div>
                 </article>
 
                 <article
-                    class="comic-card relative bg-white border-4 border-black p-4 hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab"
+                    class="comic-card group relative bg-white border-4 border-black p-4 hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab"
                     draggable="true" data-id="2" data-price="1.99">
                     <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4">
                         <img src="https://cdn.marvel.com/content/2x/im2024001_cover.jpg" alt="Iron Man"
                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                            <div id="info-Ironman"
+                            class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex-col items-center justify-center p-4 text-center transition-all">
+                            <h4 class="font-['DeathRattle'] text-xl mb-2">DETAILS</h4>
+                            <p class="font-['CCMeanwhile'] text-sm mb-4">Tony Stark begin his hard work on new costumes to face danger.</p>
+                            <button onclick="toggleInfo(event, 'info-Ironman')"
+                                class="border-2 border-black px-4 py-1 hover:bg-[#FF0000] hover:text-white font-bold transition-colors">
+                                CLOSE
+                            </button>
+                        </div>
                     </div>
                     <h3 class="text-2xl font-['DeathRattle'] leading-none mb-2">IRON MAN</h3>
-                    <div class="flex justify-between items-end font-['CCMeanwhile']">
+                    <div class="flex justify-between items-end font-['CCMeanwhile'] relative">
                         <span class="text-sm text-gray-600">Marvel</span>
                         <span class="text-3xl font-bold">$1.99</span>
+                        <button onclick="toggleInfo(event, 'info-Ironman')"
+                            class="absolute bottom-2 center-0 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-[#F5F525] border-2 border-black px-3 py-1 text-sm font-bold shadow-[2px_2px_0_#000] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] z-10">
+                            INFO
+                        </button>
                     </div>
                 </article>
+
                 <article
-                    class="comic-card relative bg-white border-4 border-black p-4 hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab"
+                    class="comic-card group relative bg-white border-4 border-black p-4 hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab"
                     draggable="true" data-id="2" data-price="1.99">
+
                     <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4">
                         <img src="https://static.wikia.nocookie.net/marvel_dc/images/0/08/Batman_Vol_3_131_Textless_Fabok_Variant.jpg/revision/latest/scale-to-width-down/1000?cb=20230106222502"
-                            alt="Iron Man"
+                            alt="Batman"
                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+
+                        <div id="info-batman"
+                            class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex-col items-center justify-center p-4 text-center transition-all">
+                            <h4 class="font-['DeathRattle'] text-xl mb-2">DETAILS</h4>
+                            <p class="font-['CCMeanwhile'] text-sm mb-4">Bruce Wayne faces his toughest challenge yet in
+                                the snowy abyss.</p>
+                            <button onclick="toggleInfo(event, 'info-batman')"
+                                class="border-2 border-black px-4 py-1 hover:bg-[#FF0000] hover:text-white font-bold transition-colors">
+                                CLOSE
+                            </button>
+                        </div>
                     </div>
+
                     <h3 class="text-2xl font-['DeathRattle'] leading-none mb-2">BATMAN</h3>
-                    <div class="flex justify-between items-end font-['CCMeanwhile']">
+                    <div class="flex justify-between items-end font-['CCMeanwhile'] relative">
                         <span class="text-sm text-gray-600">DC</span>
-                        <span class="text-3xl font-bold">$1.<span style = "color: red;">9</span>9</span>
+                        <span class="text-3xl font-bold">$1.<span style="color: red;">9</span>9</span>
+
+                        <button onclick="toggleInfo(event, 'info-batman')"
+                            class="absolute bottom-1 center-0 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-[#F5F525] border-2 border-black px-3 py-1 text-sm font-bold shadow-[2px_2px_0_#000] hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] z-10">
+                            INFO
+                        </button>
                     </div>
                 </article>
+
+
 
             </div>
         </main>
@@ -214,22 +292,23 @@
             <div class="font-['CCMeanwhile'] text-center md:text-left">
                 <h3 class="text-2xl font-bold mb-4">CONTACTS</h3>
                 <p>fifthwall@gmail.com</p>
-                <p>+1 <span style = "color: red;">2</span>34 567 890</p>
+                <p>+1 <span style="color: red;">2</span>34 567 890</p>
             </div>
             <div class="w-full md:w-1/3 text-center">
                 <h3 class="text-2xl font-['DeathRattle'] mb-4">WANNA STAY TUNED?</h3>
                 <form class="flex border-4 border-black shadow-[4px_4px_0_#000]">
-                    <input type="email" placeholder="Your email..."
-                        class="w-full p-3 outline-none font-['CCMeanwhile']" id = "emailInput">
+                    <input type="email" placeholder="Your email..." class="w-full p-3 outline-none font-['CCMeanwhile']"
+                        id="emailInput">
                     <button
-                        class="bg-[#F5F525] px-6 py-3 font-bold border-l-4 border-black hover:bg-black hover:text-[#F5F525] transition-colors" onclick="flySuperman()">SEND</button>
+                        class="bg-[#F5F525] px-6 py-3 font-bold border-l-4 border-black hover:bg-black hover:text-[#F5F525] transition-colors"
+                        onclick="flySuperman()">SEND</button>
                 </form>
             </div>
 
             <div class="flex space-x-4">
                 <div
                     class="w-12 h-12 border-4 border-black flex items-center justify-center hover:bg-[#F5F525] cursor-pointer transition-colors">
-                    <i data-lucide="instagram"></i>
+                    <i data-lucide="instagram" onclick="openInsta()"></i>
                 </div>
                 <div
                     class="w-12 h-12 border-4 border-black flex items-center justify-center hover:bg-[#F5F525] cursor-pointer transition-colors">
@@ -243,7 +322,7 @@
         </div>
 
         <div class="text-center mt-8 font-['CCMeanwhile'] text-xs opacity-50">
-            © 202<span style = "color: red;">1</span> COMIC STORE. ALL RIGHTS RESERVED.
+            © 202<span style="color: red;">1</span> COMIC STORE. ALL RIGHTS RESERVED.
         </div>
     </footer>
 
