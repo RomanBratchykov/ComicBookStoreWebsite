@@ -35,6 +35,9 @@
                     class="block py-3 border-b-4 border-black hover:bg-[#F5F525] hover:text-black transition-colors">COMICS</a>
                 <a href="NotImplemented.html"
                     class="block py-3 border-b-4 border-black hover:bg-[#F5F525] hover:text-black transition-colors">CLOTHES</a>
+                <a onclick="openRegistration()"
+                    class="hover:text-[#F5F525] hover:bg-black px-2 transition-all cursor-pointer transform hover:-rotate-2">LOG
+                    IN</a>
             </nav>
 
             <div class="mt-auto text-center font-['DeathRattle'] text-gray-500">
@@ -46,7 +49,7 @@
     <header class="fixed top-0 w-full z-50 bg-white border-b-4 border-black font-bold">
         <div class="h-2 w-full bg-[#F5F525] border-b-2 border-black"></div>
 
-        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
             <div
                 class="text-4xl tracking-tighter uppercase font-['DeathRattle'] hover:text-[#FF0000] transition-colors cursor-pointer logo-anim">
                 <img src="images/logoPNG.png" id="open-menu-btn" alt="Comic Book Store Logo" width="100"
@@ -56,20 +59,28 @@
 
             <nav class="hidden md:flex space-x-8 font-['CCMeanwhile'] text-xl">
                 <a href="NotImplemented.html"
-                    class="hover:text-[#F5F525] hover:bg-black px-2 transition-all transform hover:-rotate-2"
-                    onclick=>MANGA</a>
+                    class="hover:text-[#F5F525] hover:bg-black px-2 transition-all transform hover:-rotate-2">MANGA</a>
                 <a href="NotImplemented.html"
                     class="hover:text-[#F5F525] hover:bg-black px-2 transition-all transform hover:rotate-2">COMICS</a>
                 <a href="NotImplemented.html"
                     class="hover:text-[#F5F525] hover:bg-black px-2 transition-all transform hover:-rotate-2">CLOTHES</a>
             </nav>
 
-            <div id="cart-zone"
-                class="border-4 border-black p-2 flex items-center gap-2 bg-gray-100 transition-all duration-300"
-                title="Перетягни сюди комікс!">
-                <i data-lucide="shopping-cart"></i>
-                <span id="cart-count" class="font-mono text-xl font-bold">0</span>
-                <span class="text-xs hidden md:inline text-gray-500">Drag items here!</span>
+            <div class="flex items-center gap-8">
+
+                <div id="cart-zone"
+                    class="border-4 border-black p-2 flex items-center gap-2 bg-gray-100 transition-all duration-300 cursor-pointer"
+                    title="Перетягни сюди комікс!">
+                    <i data-lucide="shopping-cart"></i>
+                    <span id="cart-count" class="font-mono text-xl font-bold">0</span>
+                    <span class="text-xs hidden md:inline text-gray-500">Drag items here!</span>
+                </div>
+
+                <a onclick="openRegistration()"
+                    class="hidden md:block font-['CCMeanwhile'] text-xl hover:text-[#F5F525] hover:bg-black px-2 py-1 transition-all cursor-pointer transform hover:-rotate-2 border-2 border-transparent hover:border-black">
+                    LOG IN
+                </a>
+
             </div>
         </div>
     </header>
@@ -137,7 +148,7 @@
         </aside>
 
         <main class="w-full lg:w-3/4">
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8" id="comics-grid">
                 <article
                     class="comic-card group relative bg-white border-4 border-black p-4 shadow-[0_0_0_#000] hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab active:cursor-grabbing"
@@ -150,10 +161,11 @@
                             alt="Avengers"
                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
 
-                             <div id="info-avengers"
+                        <div id="info-avengers"
                             class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex-col items-center justify-center p-4 text-center transition-all">
                             <h4 class="font-['DeathRattle'] text-xl mb-2">DETAILS</h4>
-                            <p class="font-['CCMeanwhile'] text-sm mb-4">Meet the great Avengers on their adventures.</p>
+                            <p class="font-['CCMeanwhile'] text-sm mb-4">Meet the great Avengers on their adventures.
+                            </p>
                             <button onclick="toggleInfo(event, 'info-avengers')"
                                 class="border-2 border-black px-4 py-1 hover:bg-[#FF0000] hover:text-white font-bold transition-colors">
                                 CLOSE
@@ -177,10 +189,11 @@
                     <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4">
                         <img src="https://cdn.marvel.com/content/2x/im2024001_cover.jpg" alt="Iron Man"
                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                            <div id="info-Ironman"
+                        <div id="info-Ironman"
                             class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex-col items-center justify-center p-4 text-center transition-all">
                             <h4 class="font-['DeathRattle'] text-xl mb-2">DETAILS</h4>
-                            <p class="font-['CCMeanwhile'] text-sm mb-4">Tony Stark begin his hard work on new costumes to face danger.</p>
+                            <p class="font-['CCMeanwhile'] text-sm mb-4">Tony Stark begin his hard work on new costumes
+                                to face danger.</p>
                             <button onclick="toggleInfo(event, 'info-Ironman')"
                                 class="border-2 border-black px-4 py-1 hover:bg-[#FF0000] hover:text-white font-bold transition-colors">
                                 CLOSE
@@ -202,7 +215,7 @@
                     class="comic-card group relative bg-white border-4 border-black p-4 hover:shadow-[10px_10px_0_#000] transition-all duration-300 cursor-grab"
                     draggable="true" data-id="2" data-price="1.99">
 
-                    <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4">
+                    <div class="aspect-[2/3] w-full overflow-hidden border-2 border-black mb-4 relative">
                         <img src="https://static.wikia.nocookie.net/marvel_dc/images/0/08/Batman_Vol_3_131_Textless_Fabok_Variant.jpg/revision/latest/scale-to-width-down/1000?cb=20230106222502"
                             alt="Batman"
                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">

@@ -224,3 +224,79 @@ function openField6() {
         subscribeNewsletter();
     }
 }
+function openRegistration() {
+    const overlay = document.createElement('div');
+    overlay.id = 'reg-modal-overlay';
+    overlay.className = 'fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300';
+
+    const modal = document.createElement('div');
+    modal.className = 'bg-white border-4 border-black w-full max-w-md relative p-6 md:p-8 shadow-[12px_12px_0_#000] transform scale-95 transition-transform duration-300';
+    
+    modal.innerHTML = `
+        <button onclick="closeRegistration()" class="absolute top-4 right-4 p-1 border-2 border-black hover:bg-[#FF0000] hover:text-white transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <div class="text-center mb-8">
+            <h2 class="text-4xl font-['DeathRattle'] mb-2 text-black">JOIN THE SQUAD</h2>
+            <p class="font-['CCMeanwhile'] text-gray-600">Unlock exclusive comics & rare editions!</p>
+        </div>
+
+        <form onsubmit="event.preventDefault(); alert('Welcome to the team!'); closeRegistration();" class="space-y-4 font-['CCMeanwhile']">
+            
+            <div class="relative">
+                <label class="block text-xl font-bold mb-1 border-b-2 border-black inline-block">HERO NAME</label>
+                <input type="text" placeholder="e.g. Spider-Fan" required
+                    class="w-full bg-gray-50 border-4 border-black p-3 text-lg outline-none focus:bg-[#F5F525] focus:shadow-[4px_4px_0_#000] transition-all placeholder:text-gray-400">
+            </div>
+
+            <div class="relative">
+                <label class="block text-xl font-bold mb-1 border-b-2 border-black inline-block">SECRET EMAIL</label>
+                <input type="email" placeholder="identity@gmail.com" required
+                    class="w-full bg-gray-50 border-4 border-black p-3 text-lg outline-none focus:bg-[#F5F525] focus:shadow-[4px_4px_0_#000] transition-all placeholder:text-gray-400">
+            </div>
+
+            <div class="relative">
+                <label class="block text-xl font-bold mb-1 border-b-2 border-black inline-block">PASSWORD</label>
+                <input type="password" placeholder="********" required
+                    class="w-full bg-gray-50 border-4 border-black p-3 text-lg outline-none focus:bg-[#F5F525] focus:shadow-[4px_4px_0_#000] transition-all placeholder:text-gray-400">
+            </div>
+
+            <button type="submit" 
+                class="w-full mt-6 bg-[#F5F525] border-4 border-black py-4 text-2xl font-['DeathRattle'] tracking-wide hover:bg-black hover:text-[#F5F525] hover:shadow-[6px_6px_0_#fff] transition-all active:translate-y-1">
+                REGISTER NOW
+            </button>
+        </form>
+        
+        <div class="mt-4 text-center font-['CCMeanwhile'] text-sm">
+            Already have an account? <a href="#" class="underline hover:text-[#FF0000] hover:decoration-4">Log In</a>
+        </div>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    lucide.createIcons();
+
+    setTimeout(() => {
+        overlay.classList.remove('opacity-0');
+        modal.classList.remove('scale-95');
+        modal.classList.add('scale-100');
+    }, 10);
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeRegistration();
+    });
+}
+
+function closeRegistration() {
+    const overlay = document.getElementById('reg-modal-overlay');
+    if (overlay) {
+        overlay.classList.add('opacity-0');
+        overlay.querySelector('div').classList.add('scale-95');
+        
+        setTimeout(() => {
+            overlay.remove();
+        }, 300);
+    }
+}
